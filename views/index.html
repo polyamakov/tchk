@@ -1,0 +1,48 @@
+{% extends layout %}
+{% block head_section %}
+{#-
+	Include something in <head />	
+-#}
+{% endblock head_section %}
+
+{% block content %}
+	<section class="section">
+		<div class="container">
+		<h1>Переменные</h1>
+		{{ Macros.Icon('i-instagram') }}
+		<ul>
+			<li>-- Инлайн ( на текущей странице ) => {{ locals.title }}</li>
+			<li>-- Локальная ( для текущей странице ) => {{ locals.description }}</li>
+			<li>-- Глобальная ( для всех страниц ) => {{ common.data.title }}</li>
+			<img src="{{ storage ~ 'images/1.png' }}" alt="">
+		</ul>
+	</div>
+	</section>
+	<section class="section">
+		<div class="container">
+			<h2 class="sr-only">Заголовок для секции только для скрин ридера</h2>
+			<div class="row">
+				<div class="col col--md-3">
+					<div class="fixed-aspect" style="background: red"></div>
+				</div>
+				<div class="col col--md-3">
+					<div class="fixed-aspect fixed-aspect--16by9" style="background: blue"></div>
+					
+				</div>
+				<div class="col col--md-3">
+					<div class="fixed-aspect fixed-aspect--4by3" style="background: green"></div>
+					
+				</div>
+				<div class="col col--md-3">
+					<div class="fixed-aspect fixed-aspect--2by1" style="background: gold"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
+
+{% block footer_section %}
+	{#-
+		Include something before /body	
+	-#}
+{% endblock footer_section %}

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ locals.title }}</title>
+    <meta content="{{ locals.description }}" name="description">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="" name="keywords">
+
+    {%- if locals.og %}
+      {%- if locals.image %}
+      <meta property="og:image" content="{{ locals.image|img_asset }}">
+      {%- endif %}
+      <meta property="og:title" content="{{ locals.title }}">
+      <meta property="og:description" content="{{ locals.description }}">
+    {%- endif %}
+    {% if themeColor  %}
+      <meta name="theme-color" content="{{ themeColor }}">
+      <meta name="msapplication-navbutton-color" content="{{ themeColor }}">
+      <meta name="apple-mobile-web-app-status-bar-style" content="{{ themeColor }}">
+    {% endif %}
+    <link rel="shortcut icon" href="favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="HandheldFriendly" content="true">
+
+    <link href="{{ 'style.css'|css_asset }}" rel="stylesheet" type="text/css">
+    {% include "blocks/head_analitycs.html" %}
+    {% block head_section %}{% endblock head_section %}
+  </head>
+  <body>
+    {% import 'macros/macro.html' as Macros %}
+    {% include "blocks/svg-symbols.svg" %}
+    {% include "blocks/header.html" %}
+    <main>
+    {% block content %}{% endblock content %}
+    </main>
+    {% include "blocks/footer.html" %}
+    {%- if not isExport and _env == 'development'%}
+      {% include "blocks/__add_component.html" %}
+      <!-- include liveReload only in Dev server -->
+      <script src="//localhost:35729/livereload.js"></script>
+    {%- endif %}
+    {%- if _showPages -%}
+      {% include "blocks/__pagelist.html" %}
+    {%- endif -%}
+    <script src="{{ 'common.js'|js_asset }}"></script>
+    {% block footer_section %}{% endblock footer_section %}
+    {% include "blocks/analitycs.html" %}
+  </body>
+</html>
